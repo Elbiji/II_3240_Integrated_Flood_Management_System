@@ -1,0 +1,14 @@
+services:
+  redis:
+    image: redis:7.4-alpine
+    restart: always
+    ports: 
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass mebombo
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: flooddb

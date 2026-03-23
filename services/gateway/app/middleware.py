@@ -3,6 +3,7 @@ import httpx
 import redis.asyncio as redis
 
 AUTH_SERVICE = "http://localhost:8001"
+MODEL_SERVICE = "http://localhost:8082"
 
 async def check_rate_limit(device_id: str, r: redis.Redis):
     key = f"rate:{device_id}"

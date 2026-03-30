@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from config import settings
+from app.config import settings
 import httpx
 
 router = APIRouter()

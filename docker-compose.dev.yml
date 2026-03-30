@@ -12,3 +12,29 @@ services:
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: flooddb
+
+  gateway:
+    build:
+      context: ./services/gateway
+    ports:
+      - "8000:8000"
+
+  auth:
+    build:
+      context: ./services/auth
+    ports:
+      - "8001:8000"
+
+  etl:
+    build:
+      context: ./services/etl
+    env_file:
+      - .env
+    ports:
+      - "8002:8000"
+
+  # model:
+  #   build:
+  #     context: ./services/ml
+  #   ports:
+  #     - "8003:8000"

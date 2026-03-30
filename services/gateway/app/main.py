@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from routes import base
-from routes.base import set_redis
+from app.routes import base
+from app.routes.base import set_redis
 import redis.asyncio as aioredis
 import uvicorn
 import os
@@ -33,9 +33,9 @@ async def root():
 async def health():
     return { "status": "ok" }
 
-APP_MODULE = "main:app"
+# APP_MODULE = "main:app"
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    reload = os.environ.get("ENV", "development") == "development"
-    uvicorn.run(APP_MODULE, host="0.0.0.0", port=port, reload=reload)
+# if __name__ == "__main__":
+#     port = int(os.environ.get("PORT", 8000))
+#     reload = os.environ.get("ENV", "development") == "development"
+#     uvicorn.run(APP_MODULE, host="0.0.0.0", port=port, reload=reload)

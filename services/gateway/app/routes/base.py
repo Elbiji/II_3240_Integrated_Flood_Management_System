@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Header, HTTPException
-from model.schemas import SensorReading
-from middleware import check_auth, check_rate_limit
+from app.model.schemas import SensorReading
+from app.middleware import check_auth, check_rate_limit
 import redis.asyncio as aioredis
 import json
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from model.schema import DeviceRegister, DeviceValidate
+from app.model.schema import DeviceRegister, DeviceValidate
 import bcrypt
 
 router = APIRouter(prefix="/auth", tags=['auth'])

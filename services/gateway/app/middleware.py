@@ -2,8 +2,9 @@ from fastapi import HTTPException, Header
 import httpx
 import redis.asyncio as redis
 
-AUTH_SERVICE = "http://localhost:8001"
-MODEL_SERVICE = "http://localhost:8082"
+# Container ports
+AUTH_SERVICE = "http://auth:8000"
+MODEL_SERVICE = "http://model:8000"
 
 async def check_rate_limit(device_id: str, r: redis.Redis):
     key = f"rate:{device_id}"

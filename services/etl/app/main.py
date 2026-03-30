@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routes import base
+from app.routes import base
 import os
 import uvicorn
 
@@ -18,14 +18,14 @@ async def root():
 async def health():
     return {"stats": "ok"}
 
-APP_MODULE = "main:app"
+# APP_MODULE = "main:app"
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8003))
-    reload = os.environ.get("ENV", "development") == "development"
-    uvicorn.run(
-        APP_MODULE,
-        host="0.0.0.0",
-        port=port,
-        reload=reload
-    )
+# if __name__ == "__main__":
+#     port = int(os.environ.get("PORT", 8003))
+#     reload = os.environ.get("ENV", "development") == "development"
+#     uvicorn.run(
+#         APP_MODULE,
+#         host="0.0.0.0",
+#         port=port,
+#         reload=reload
+#     )

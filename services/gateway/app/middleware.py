@@ -1,12 +1,13 @@
 from fastapi import HTTPException, Header
+from app.config import settings, RedisClient
 import httpx
-import redis.asyncio as redis
 
 # Container ports
-AUTH_SERVICE = "http://auth:8000"
-MODEL_SERVICE = "http://model:8000"
+AUTH_SERVICE = settings.AUTH_SERVICE
+MODEL_SERVICE = settings.MODEL_SERVICE
 
-async def check_rate_limit(device_id: str, r: redis.Redis):
+async def check_rate_limit(device_id: str):
+    r = RedisClient.get()
     key = f"rate:{device_id}"
     count = await r.incr(key)
     if count == 1:
@@ -14,7 +15,7 @@ async def check_rate_limit(device_id: str, r: redis.Redis):
     if count > 10:
         raise HTTPException(status_code=429, detail="Rate limit exceeded")
     
-async def check_auth(device_id: str, token: str):
+async def check_device_auth(device_id: str, token: str):
     async with httpx.AsyncClient() as client:
         try:
             res = await client.post(f"{AUTH_SERVICE}/auth/validate", json={
@@ -25,3 +26,7 @@ async def check_auth(device_id: str, token: str):
                 raise HTTPException(status_code=401, detail="Unauthorized")
         except httpx.ConnectError:
             raise HTTPException(status_code=503, detail="Auth service unavailable")
+        
+async def check_user_auth():
+    #TODO Servis autentikasi pengguna sama device belom
+    pass

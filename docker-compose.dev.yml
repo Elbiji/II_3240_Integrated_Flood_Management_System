@@ -16,6 +16,8 @@ services:
   gateway:
     build:
       context: ./services/gateway
+    env_file:
+      - .env
     ports:
       - "8000:8000"
 

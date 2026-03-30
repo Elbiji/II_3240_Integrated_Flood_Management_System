@@ -1,4 +1,4 @@
-from fastapi import HTTPException, Header
+from fastapi import HTTPException
 from app.config import settings, RedisClient
 import httpx
 

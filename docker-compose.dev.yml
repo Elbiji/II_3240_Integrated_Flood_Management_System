@@ -24,6 +24,8 @@ services:
   auth:
     build:
       context: ./services/auth
+    env_file:
+      - .env
     ports:
       - "8001:8000"
 

@@ -1,7 +1,17 @@
 from fastapi import FastAPI
+from contextlib import asynccontextmanager
 from app.routes import base
-import os
-import uvicorn
+from app.config import settings, RedisClient
+import redis.asyncio as aioredis
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    r = aioredis.from_url(settings.REDIS_URL)
+    RedisClient.set_redis(r)
+    print("Connected to Redis")
+    yield
+    await RedisClient.close()
+    print("Redis connection closed")
 
 app = FastAPI(
     title="Authentication Service",

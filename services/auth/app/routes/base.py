@@ -1,14 +1,14 @@
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from app.config import settings
-from app.model.schema import DeviceRegister, DeviceValidate
+from app.model.schema import DeviceRegister, DeviceValidate, Token, TokenData, User
 from jose import jwt
 from urllib.parse import urlencode
 import bcrypt
 import os
 import httpx
 
-# TODO Kelarin callback, google token exchange, token session creation, setup database pengguna, 
+# TODO token session creation, setup database pengguna, 
 # Pembuatan dependency buat di gateway buat cek token, gateway reverse proxy
 
 router = APIRouter(prefix="/auth", tags=['auth'])
@@ -50,20 +50,29 @@ async def login():
     url = f"{settings.GOOGLE_AUTH_URL}?{urlencode(query_params)}"
     return RedirectResponse(url)
 
-# @router.get("/auth/callback")
-# async def auth_callback(request: Request):
-#     code = request.query_params.get("code")
-#     if not code:
-#         raise HTTPException(status_code=400, detail="Authorization code not found")
+@router.get("/callback")
+async def auth_callback(request: Request):
+    code = request.query_params.get("code")
+    if not code:
+        raise HTTPException(status_code=400, detail="Authorization code not found")
 
-#     data = {
-#         "code": code,
-#         "client_id": settings.GOOGLE_CLIENT,
-#         "client_secret": settings.GOOGLE_SECRET,
-#         "redirect_uri": settings.GOOGLE_REDIRECT_URI,
-#         "grant_type": "authorization_code"
-#     }
+    data = {
+        "code": code,
+        "client_id": settings.GOOGLE_CLIENT,
+        "client_secret": settings.GOOGLE_SECRET,
+        "redirect_uri": settings.GOOGLE_REDIRECT_URI,
+        "grant_type": "authorization_code"
+    }
 
-#     async with httpx.AsyncClient() as client:
-#         try:
-#             res = await client.post()
+    async with httpx.AsyncClient() as client:
+        try:
+            res = await client.post(settings.GOOGLE_TOKEN_URL, data=data)
+            if res.status_code != 200:
+                raise HTTPException(status_code=res.status_code , detail=res.json())
+            token_data = res.json()
+            access_token = token_data.get("access_token")
+
+            # Proses buat token session blm dibuat
+            return {"message": access_token}
+        except httpx.ConnectError:
+            raise HTTPException(status_code=503, detail="Google token service unavailable")

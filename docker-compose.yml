@@ -1,0 +1,50 @@
+services:
+  redis:
+    image: redis:7.4-alpine
+    restart: always
+    ports: 
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: flooddb
+    volumes:
+      - ./infra/timescaledb/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ts_data:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: ./services/server
+    volumes:
+      - ./services/server:/app # Binding changes realtime 
+      - /app/.venv # Prevent deletion of local host's UV venv by giving space for container's python .venv 
+    environment:
+      - PYTHONUNBUFFERED=1 # Output cli
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - timescaledb
+      - redis
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:1883:1883" 
+      - "8883:8883"    # MQTTS (secure)
+      - "9001:9001"    # WebSockets
+    volumes:
+      - ./infra/mosquitto/config:/mosquitto/config
+      - ./infra/mosquitto/data:/mosquitto/data
+      - ./infra/mosquitto/log:/mosquitto/log
+
+volumes:
+  ts_data:

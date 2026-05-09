@@ -18,7 +18,7 @@ class MQTTHandler():
 
         # Get Openmeteo Open Source Weather API
         async with httpx.AsyncClient() as client:
-            response = await client.get("http://server:8000/service/weather")
+            response = await client.get("http://server:8000/api/v1/services/weather")
 
         readings = await cls.extract_esp32_data(weather_data=response.json(), sensor_data=payload.decode(), device_id=device_id)
 

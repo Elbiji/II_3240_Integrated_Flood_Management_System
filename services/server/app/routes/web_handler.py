@@ -1,13 +1,15 @@
-from fastapi import APIRouter, Header, HTTPException
-from app.model.schemas import SensorReading
-from app.config import RedisClient, HTTPClient
-from app.middleware import check_rate_limit
 import httpx
 import json
 
+from fastapi import APIRouter, Header, HTTPException, Query, Depends
+from app.config import RedisClient, HTTPClient, DatabaseClient
+from app.middleware import check_rate_limit
+from app.services.inference_engine import InferenceEngine
+from datetime import timedelta
+
 router = APIRouter()
 
-@router.get("/service/weather")
+@router.get("/api/v1/services/weather")
 async def weather():
     client = HTTPClient.get()
     url = "https://api.open-meteo.com/v1/forecast?latitude=-6.923955&longitude=107.601807&current=temperature_2m,precipitation,rain,relative_humidity_2m,wind_speed_10m,pressure_msl,cloud_cover&timezone=Asia%2FSingapore&forecast_days=1"
@@ -22,7 +24,111 @@ async def weather():
 
         return data.get("current", {})
     except Exception as e:
-        print(f"Open-Meteo Error: {e}")
-        return None
+        raise HTTPException(status_code=500, detail=str(e))
 
-# @router.get("/service/data")
+@router.get("/api/v1/sensors/{device_id}/history")
+async def get_sensor_history(device_id: str, 
+                             window: str = Query("1 hour", regex="^(1 hour|24 hours|7 days|30 days)$"),
+                             _ = Depends(check_rate_limit)):
+    bucket_map = {
+        "1 hour": timedelta(seconds=10),
+        "24 hours": timedelta(minutes=5),
+        "7 days": timedelta(hours=1),
+        "30 days": timedelta(hours=6)
+    }
+    bucket_size = bucket_map.get(window)
+
+    pool = DatabaseClient.get_pool()
+    # Limit data yang diliat -> Buat bucket per time window -> Order by dari oldest to newest data
+    query = f"""
+        SELECT
+            time_bucket($2, timestamp) AS bucket,
+            avg(water_height) as avg_height
+        FROM sensor_readings
+        WHERE sensor_id = $1
+            AND timestamp > NOW() - INTERVAL '{window}'
+        GROUP BY bucket
+        ORDER BY bucket ASC;
+    """
+    try:
+        async with pool.acquire() as conn:
+            rows = await conn.fetch(query, device_id, bucket_size)
+
+            return [
+                {
+                    "timestamp": row["bucket"].isoformat(),
+                    "water_height": round(row["avg_height"], 2),
+                }
+                for row in rows
+            ]
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/api/v1/sensors/{device_id}/weather_history")
+async def get_sensor_weather_history(device_id: str,
+                                     window: str = Query("1 hour", regex="^(1 hour|24 hours|7 days|30 days)$"),
+                                     _ = Depends(check_rate_limit)):
+    bucket_map = {
+        "1 hour": timedelta(seconds=10),
+        "24 hours": timedelta(minutes=5),
+        "7 days": timedelta(hours=1),
+        "30 days": timedelta(hours=6)
+    }
+    bucket_size = bucket_map.get(window)
+
+    pool = DatabaseClient.get_pool()
+    query = f"""
+        SELECT
+            time_bucket($2, timestamp) AS bucket,
+            avg(precipitation) as avg_preciptation,
+            avg(temperature) as avg_temperature,
+            avg(humidity) as avg_humidity
+        FROM sensor_readings 
+        WHERE sensor_id = $1
+            AND timestamp > NOW() - INTERVAL '{window}'
+        GROUP BY bucket
+        ORDER BY bucket ASC;
+    """
+    try:
+        async with pool.acquire() as conn:
+            rows = await conn.fetch(query, device_id, bucket_size)
+
+            return [
+                {
+                    "timestamp": row["bucket"].isoformat(),
+                    "precipitation": round(row["avg_preciptation"], 2),
+                    "temperature": round(row['avg_temperature'], 2),
+                    "humidity": round(row["avg_humidity"], 2)
+                }
+                for row in rows
+            ]
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/api/v1/sensors/{device_id}/information")
+async def get_sensor_information(device_id: str, _ = Depends(check_rate_limit)):
+
+    pool = DatabaseClient.get_pool()
+    query = """
+        SELECT sensor_id, location
+        FROM sensors
+        WHERE sensor_id = $1;
+    """
+
+    try:
+        async with pool.acquire() as conn:
+            row = await conn.fetch(query, device_id)
+            return row
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+    
+@router.get("/api/v1/services/{device_id}/inference")
+async def get_sensor_inference(device_id: str):
+
+    inference_result = await InferenceEngine.calculate_flood_probability()
+
+    pass

@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from app.routes import base
-from fastapi_mqtt.config import MQTTConfig
-from fastapi_mqtt.fastmqtt import FastMQTT
+from app.routes import web_handler
 from app.config import RedisClient, DatabaseClient, MQTTClient, HTTPClient, settings
 import redis.asyncio as aioredis
 import logging
@@ -18,7 +16,7 @@ async def lifespan(app: FastAPI):
     await DatabaseClient.initialize(settings.DATABASE_URL)
     logger.info("Connected to TimescaleDB")
 
-    await MQTTClient.initialize(DatabaseClient)
+    await MQTTClient.initialize()
     logger.info("Connected to Mosquitto broker")
 
     await HTTPClient.initialize()
@@ -41,7 +39,7 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-app.include_router(base.router)
+app.include_router(web_handler.router)
 
 @app.get("/")
 async def root():

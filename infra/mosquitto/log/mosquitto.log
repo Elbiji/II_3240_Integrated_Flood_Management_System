@@ -858,3 +858,228 @@
 1778295900: New client connected from 172.19.0.5:39412 as 0ecf31aa5c7e42358a237908aab95818 (p5, c1, k60).
 1778295913: mosquitto version 2.1.2 terminating
 1778295913: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778295921: mosquitto version 2.1.2 starting
+1778295921: Config loaded from /mosquitto/config/mosquitto.conf.
+1778295921: Bridge support available.
+1778295921: Persistence support available.
+1778295921: TLS support available.
+1778295921: TLS-PSK support available.
+1778295921: Websockets support available.
+1778295921: Opening ipv4 listen socket on port 1883.
+1778295921: Opening ipv4 listen socket on port 9001.
+1778295921: Opening ipv6 listen socket on port 9001.
+1778295921: mosquitto version 2.1.2 running
+1778295923: New connection from 172.19.0.1:49510 on port 1883.
+1778295923: New client connected from 172.19.0.1:49510 as ESP32Client (p4, c1, k15).
+1778295927: New connection from 172.19.0.5:39528 on port 1883.
+1778295927: New client connected from 172.19.0.5:39528 as f28a0a58fbdc4256b9f57df76c37615c (p5, c1, k60).
+1778295968: Client f28a0a58fbdc4256b9f57df76c37615c [172.19.0.5:39528] disconnected: connection closed by client.
+1778295969: New connection from 172.19.0.5:42584 on port 1883.
+1778295969: New client connected from 172.19.0.5:42584 as 2ce4b99a26654ddcb039cb784786e530 (p5, c1, k60).
+1778295987: Client 2ce4b99a26654ddcb039cb784786e530 [172.19.0.5:42584] disconnected: connection closed by client.
+1778295988: New connection from 172.19.0.5:40946 on port 1883.
+1778295988: New client connected from 172.19.0.5:40946 as 9f61170edd9448408aef643b95796f80 (p5, c1, k60).
+1778295989: Client 9f61170edd9448408aef643b95796f80 [172.19.0.5:40946] disconnected: connection closed by client.
+1778295989: New connection from 172.19.0.5:40950 on port 1883.
+1778295989: New client connected from 172.19.0.5:40950 as f286f67536bc4dbcb8b331b8b4a33077 (p5, c1, k60).
+1778296294: Client f286f67536bc4dbcb8b331b8b4a33077 [172.19.0.5:40950] disconnected: connection closed by client.
+1778296783: New connection from 172.19.0.5:39558 on port 1883.
+1778296783: New client connected from 172.19.0.5:39558 as ae8f1549e1814daea8ef4fb93381f87a (p5, c1, k60).
+1778297368: Client ae8f1549e1814daea8ef4fb93381f87a [172.19.0.5:39558] disconnected: connection closed by client.
+1778297369: New connection from 172.19.0.5:48776 on port 1883.
+1778297369: New client connected from 172.19.0.5:48776 as 24c8d9d8b58c41d2a6bd66edebb51747 (p5, c1, k60).
+1778297388: Client 24c8d9d8b58c41d2a6bd66edebb51747 [172.19.0.5:48776] disconnected: connection closed by client.
+1778297417: New connection from 172.19.0.5:46336 on port 1883.
+1778297417: New client connected from 172.19.0.5:46336 as 7b00f062ba0749d1853ed9dd5eb52d1f (p5, c1, k60).
+1778297443: Client 7b00f062ba0749d1853ed9dd5eb52d1f [172.19.0.5:46336] disconnected: connection closed by client.
+1778297496: New connection from 172.19.0.5:56362 on port 1883.
+1778297496: New client connected from 172.19.0.5:56362 as 4b714b9541dc4ee8a6d1efaae33540a2 (p5, c1, k60).
+1778297524: Client 4b714b9541dc4ee8a6d1efaae33540a2 [172.19.0.5:56362] disconnected: connection closed by client.
+1778297525: New connection from 172.19.0.5:42890 on port 1883.
+1778297525: New client connected from 172.19.0.5:42890 as 01ba98ef66e148eb8ecddc58bb65b1f5 (p5, c1, k60).
+1778297546: Client 01ba98ef66e148eb8ecddc58bb65b1f5 [172.19.0.5:42890] disconnected: connection closed by client.
+1778297547: New connection from 172.19.0.5:58710 on port 1883.
+1778297547: New client connected from 172.19.0.5:58710 as 56c6d59870fb4b9995dc663d5ec0163e (p5, c1, k60).
+1778297594: Client 56c6d59870fb4b9995dc663d5ec0163e [172.19.0.5:58710] disconnected: connection closed by client.
+1778297595: New connection from 172.19.0.5:54232 on port 1883.
+1778297595: New client connected from 172.19.0.5:54232 as d40f4ce82d6a4025998ae41d3ad21623 (p5, c1, k60).
+1778297674: Client d40f4ce82d6a4025998ae41d3ad21623 [172.19.0.5:54232] disconnected: connection closed by client.
+1778297675: New connection from 172.19.0.5:38622 on port 1883.
+1778297675: New client connected from 172.19.0.5:38622 as b8979b0b24e146e3b539111069d0620c (p5, c1, k60).
+1778297721: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778297835: Client b8979b0b24e146e3b539111069d0620c [172.19.0.5:38622] disconnected: connection closed by client.
+1778297836: New connection from 172.19.0.5:48868 on port 1883.
+1778297836: New client connected from 172.19.0.5:48868 as f46ff2075e2740ee967eda97708d8ab6 (p5, c1, k60).
+1778297853: Client f46ff2075e2740ee967eda97708d8ab6 [172.19.0.5:48868] disconnected: connection closed by client.
+1778297854: New connection from 172.19.0.5:57364 on port 1883.
+1778297854: New client connected from 172.19.0.5:57364 as e03cabab949a47f4a56d5fa41c4ef4c9 (p5, c1, k60).
+1778298065: Client e03cabab949a47f4a56d5fa41c4ef4c9 [172.19.0.5:57364] disconnected: connection closed by client.
+1778298066: New connection from 172.19.0.5:39954 on port 1883.
+1778298066: New client connected from 172.19.0.5:39954 as 553209360ba54423a69c784916570762 (p5, c1, k60).
+1778298117: Client 553209360ba54423a69c784916570762 [172.19.0.5:39954] disconnected: connection closed by client.
+1778298118: New connection from 172.19.0.5:40370 on port 1883.
+1778298118: New client connected from 172.19.0.5:40370 as 5dbf381b413d422b88dcf002f674e372 (p5, c1, k60).
+1778298195: Client 5dbf381b413d422b88dcf002f674e372 [172.19.0.5:40370] disconnected: connection closed by client.
+1778298196: New connection from 172.19.0.5:40360 on port 1883.
+1778298196: New client connected from 172.19.0.5:40360 as bd267db99fed48e9b41c62f8785882c0 (p5, c1, k60).
+1778298562: Client bd267db99fed48e9b41c62f8785882c0 [172.19.0.5:40360] disconnected: connection closed by client.
+1778298563: New connection from 172.19.0.5:59376 on port 1883.
+1778298563: New client connected from 172.19.0.5:59376 as a6ae58dd0c554ca385bd9bd7b0117a09 (p5, c1, k60).
+1778299522: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778299878: Client a6ae58dd0c554ca385bd9bd7b0117a09 [172.19.0.5:59376] disconnected: connection closed by client.
+1778299879: New connection from 172.19.0.5:55824 on port 1883.
+1778299879: New client connected from 172.19.0.5:55824 as 3929711d12bb4614b4c9001ea0f10907 (p5, c1, k60).
+1778300233: Client 3929711d12bb4614b4c9001ea0f10907 [172.19.0.5:55824] disconnected: connection closed by client.
+1778300234: New connection from 172.19.0.5:60774 on port 1883.
+1778300234: New client connected from 172.19.0.5:60774 as 4f8f747285e74ec4adabe153f586d6af (p5, c1, k60).
+1778300642: Client ESP32Client [172.19.0.1:49510] disconnected: connection closed by client.
+1778301323: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778303124: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778304925: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778306444: New connection from 172.19.0.1:53072 on port 1883.
+1778306444: New client connected from 172.19.0.1:53072 as ESP32Client (p4, c1, k15).
+1778306645: mosquitto version 2.1.2 terminating
+1778306645: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778308602: mosquitto version 2.1.2 starting
+1778308602: Config loaded from /mosquitto/config/mosquitto.conf.
+1778308602: Bridge support available.
+1778308602: Persistence support available.
+1778308602: TLS support available.
+1778308602: TLS-PSK support available.
+1778308602: Websockets support available.
+1778308602: Opening ipv4 listen socket on port 1883.
+1778308602: Opening ipv4 listen socket on port 9001.
+1778308602: Opening ipv6 listen socket on port 9001.
+1778308602: mosquitto version 2.1.2 running
+1778308613: New connection from 172.19.0.5:46250 on port 1883.
+1778308613: New client connected from 172.19.0.5:46250 as 449dce57d9644b71ba686f0240990ad0 (p5, c1, k60).
+1778308675: New connection from 172.19.0.1:34734 on port 1883.
+1778308675: New client connected from 172.19.0.1:34734 as ESP32Client (p4, c1, k15).
+1778309470: Client 449dce57d9644b71ba686f0240990ad0 [172.19.0.5:46250] disconnected: connection closed by client.
+1778309471: New connection from 172.19.0.5:58990 on port 1883.
+1778309471: New client connected from 172.19.0.5:58990 as 0dea48ea2ba2481392f0b90cc2afb6d1 (p5, c1, k60).
+1778309505: Client 0dea48ea2ba2481392f0b90cc2afb6d1 [172.19.0.5:58990] disconnected: connection closed by client.
+1778309506: New connection from 172.19.0.5:32796 on port 1883.
+1778309506: New client connected from 172.19.0.5:32796 as 468c09e3362b452c9f39be49a0c27c05 (p5, c1, k60).
+1778309616: New connection from 172.19.0.1:46130 on port 1883.
+1778309616: Client ESP32Client [172.19.0.1:34734] disconnected: session taken over.
+1778309616: New client connected from 172.19.0.1:46130 as ESP32Client (p4, c1, k15).
+1778309642: New connection from 172.19.0.1:46598 on port 1883.
+1778309642: Client ESP32Client [172.19.0.1:46130] disconnected: session taken over.
+1778309642: New client connected from 172.19.0.1:46598 as ESP32Client (p4, c1, k15).
+1778309690: New connection from 172.19.0.1:36644 on port 1883.
+1778309690: Client ESP32Client [172.19.0.1:46598] disconnected: session taken over.
+1778309690: New client connected from 172.19.0.1:36644 as ESP32Client (p4, c1, k15).
+1778310142: Client 468c09e3362b452c9f39be49a0c27c05 [172.19.0.5:32796] disconnected: connection closed by client.
+1778310143: New connection from 172.19.0.5:50486 on port 1883.
+1778310143: New client connected from 172.19.0.5:50486 as 906f851c1f844b2bb062028661c1ef84 (p5, c1, k60).
+1778310349: Client 906f851c1f844b2bb062028661c1ef84 [172.19.0.5:50486] disconnected: connection closed by client.
+1778310350: New connection from 172.19.0.5:60068 on port 1883.
+1778310350: New client connected from 172.19.0.5:60068 as 89016b734af7421ba4f30231211964d3 (p5, c1, k60).
+1778310402: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778310433: Client 89016b734af7421ba4f30231211964d3 [172.19.0.5:60068] disconnected: connection closed by client.
+1778310434: New connection from 172.19.0.5:54716 on port 1883.
+1778310434: New client connected from 172.19.0.5:54716 as 6aa2b9952d8242fa9e92e5781fce071a (p5, c1, k60).
+1778310466: Client 6aa2b9952d8242fa9e92e5781fce071a [172.19.0.5:54716] disconnected: connection closed by client.
+1778310467: New connection from 172.19.0.5:52270 on port 1883.
+1778310467: New client connected from 172.19.0.5:52270 as ffd846f2aae548d291c068d4864e5464 (p5, c1, k60).
+1778310723: Client ffd846f2aae548d291c068d4864e5464 [172.19.0.5:52270] disconnected: connection closed by client.
+1778310724: New connection from 172.19.0.5:39902 on port 1883.
+1778310724: New client connected from 172.19.0.5:39902 as 026c2e6325fe4db59781f3c3ea177e33 (p5, c1, k60).
+1778310727: Client 026c2e6325fe4db59781f3c3ea177e33 [172.19.0.5:39902] disconnected: connection closed by client.
+1778310728: New connection from 172.19.0.5:39906 on port 1883.
+1778310728: New client connected from 172.19.0.5:39906 as dedc36c8019d4f5aad1abcd8bad6d5e3 (p5, c1, k60).
+1778310732: Client dedc36c8019d4f5aad1abcd8bad6d5e3 [172.19.0.5:39906] disconnected: connection closed by client.
+1778310732: New connection from 172.19.0.5:60566 on port 1883.
+1778310732: New client connected from 172.19.0.5:60566 as c79bae293b604e3cb118633cd078abcb (p5, c1, k60).
+1778310769: Client c79bae293b604e3cb118633cd078abcb [172.19.0.5:60566] disconnected: connection closed by client.
+1778310770: New connection from 172.19.0.5:56740 on port 1883.
+1778310770: New client connected from 172.19.0.5:56740 as 26f8fad60e8a41069ef6103abba8c76e (p5, c1, k60).
+1778310884: Client 26f8fad60e8a41069ef6103abba8c76e [172.19.0.5:56740] disconnected: connection closed by client.
+1778310884: New connection from 172.19.0.5:55922 on port 1883.
+1778310884: New client connected from 172.19.0.5:55922 as aeb68d0f070f41dab8746910ff096ad1 (p5, c1, k60).
+1778310902: Client ESP32Client [172.19.0.1:36644] disconnected: exceeded timeout.
+1778310903: New connection from 172.19.0.1:37314 on port 1883.
+1778310903: New client connected from 172.19.0.1:37314 as ESP32Client (p4, c1, k15).
+1778311095: Client aeb68d0f070f41dab8746910ff096ad1 [172.19.0.5:55922] disconnected: connection closed by client.
+1778311096: New connection from 172.19.0.5:45280 on port 1883.
+1778311096: New client connected from 172.19.0.5:45280 as bf6d79a3c67e460b8d07cba226f6dea6 (p5, c1, k60).
+1778311096: Client bf6d79a3c67e460b8d07cba226f6dea6 [172.19.0.5:45280] disconnected: connection closed by client.
+1778311097: New connection from 172.19.0.5:45290 on port 1883.
+1778311097: New client connected from 172.19.0.5:45290 as 236cdf3a29ed4bf799078e18446e8ce0 (p5, c1, k60).
+1778311282: Client 236cdf3a29ed4bf799078e18446e8ce0 [172.19.0.5:45290] disconnected: connection closed by client.
+1778311283: New connection from 172.19.0.5:59854 on port 1883.
+1778311283: New client connected from 172.19.0.5:59854 as b75df35e2ada4b0db69c8d706be3d780 (p5, c1, k60).
+1778311283: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311283: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:59854] disconnected: malformed packet.
+1778311289: New connection from 172.19.0.5:59856 on port 1883.
+1778311289: New client connected from 172.19.0.5:59856 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311289: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311289: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:59856] disconnected: malformed packet.
+1778311295: New connection from 172.19.0.5:49956 on port 1883.
+1778311295: New client connected from 172.19.0.5:49956 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311295: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311295: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:49956] disconnected: malformed packet.
+1778311301: New connection from 172.19.0.5:45450 on port 1883.
+1778311301: New client connected from 172.19.0.5:45450 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311301: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311301: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:45450] disconnected: malformed packet.
+1778311307: New connection from 172.19.0.5:45464 on port 1883.
+1778311307: New client connected from 172.19.0.5:45464 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311307: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311307: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:45464] disconnected: malformed packet.
+1778311313: New connection from 172.19.0.5:50300 on port 1883.
+1778311313: New client connected from 172.19.0.5:50300 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311313: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311313: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:50300] disconnected: malformed packet.
+1778311319: New connection from 172.19.0.5:50312 on port 1883.
+1778311319: New client connected from 172.19.0.5:50312 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311319: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311319: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:50312] disconnected: malformed packet.
+1778311325: New connection from 172.19.0.5:42854 on port 1883.
+1778311325: New client connected from 172.19.0.5:42854 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311325: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311325: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:42854] disconnected: malformed packet.
+1778311331: New connection from 172.19.0.5:46274 on port 1883.
+1778311331: New client connected from 172.19.0.5:46274 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311331: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311331: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:46274] disconnected: malformed packet.
+1778311337: New connection from 172.19.0.5:46286 on port 1883.
+1778311337: New client connected from 172.19.0.5:46286 as b75df35e2ada4b0db69c8d706be3d780 (p5, c0, k60).
+1778311337: Invalid subscription string from 172.19.0.5, disconnecting.
+1778311337: Client b75df35e2ada4b0db69c8d706be3d780 [172.19.0.5:46286] disconnected: malformed packet.
+1778311341: New connection from 172.19.0.5:36816 on port 1883.
+1778311341: New client connected from 172.19.0.5:36816 as 50b1f29afd964623b745da1fef464f20 (p5, c1, k60).
+1778311495: Client ESP32Client [172.19.0.1:37314] disconnected: exceeded timeout.
+1778311518: New connection from 172.19.0.1:38966 on port 1883.
+1778311518: New client connected from 172.19.0.1:38966 as ESP32Client (p4, c1, k15).
+1778311528: New connection from 172.19.0.1:42308 on port 1883.
+1778311528: Client ESP32Client [172.19.0.1:38966] disconnected: session taken over.
+1778311528: New client connected from 172.19.0.1:42308 as ESP32Client (p4, c1, k15).
+1778311533: New connection from 172.19.0.1:51834 on port 1883.
+1778311533: Client ESP32Client [172.19.0.1:42308] disconnected: session taken over.
+1778311533: New client connected from 172.19.0.1:51834 as ESP32Client (p4, c1, k15).
+1778311541: New connection from 172.19.0.1:49612 on port 1883.
+1778311541: Client ESP32Client [172.19.0.1:51834] disconnected: session taken over.
+1778311541: New client connected from 172.19.0.1:49612 as ESP32Client (p4, c1, k15).
+1778311545: New connection from 172.19.0.1:49628 on port 1883.
+1778311545: Client ESP32Client [172.19.0.1:49612] disconnected: session taken over.
+1778311545: New client connected from 172.19.0.1:49628 as ESP32Client (p4, c1, k15).
+1778311757: New connection from 172.19.0.1:40206 on port 1883.
+1778311757: Client ESP32Client [172.19.0.1:49628] disconnected: session taken over.
+1778311757: New client connected from 172.19.0.1:40206 as ESP32Client (p4, c1, k15).
+1778311904: Client 50b1f29afd964623b745da1fef464f20 [172.19.0.5:36816] disconnected: connection closed by client.
+1778311905: New connection from 172.19.0.5:40558 on port 1883.
+1778311905: New client connected from 172.19.0.5:40558 as 7563b0b2e89b4f739b7db9f790d77275 (p5, c1, k60).
+1778311906: Client 7563b0b2e89b4f739b7db9f790d77275 [172.19.0.5:40558] disconnected: connection closed by client.
+1778311907: New connection from 172.19.0.5:40566 on port 1883.
+1778311907: New client connected from 172.19.0.5:40566 as 5a476800a620421c838244e4336210d2 (p5, c1, k60).
+1778311949: Client ESP32Client [172.19.0.1:40206] disconnected: exceeded timeout.
+1778311949: New connection from 172.19.0.1:57510 on port 1883.
+1778311949: New client connected from 172.19.0.1:57510 as ESP32Client (p4, c1, k15).
+1778312131: Client 5a476800a620421c838244e4336210d2 [172.19.0.5:40566] disconnected: connection closed by client.
+1778312132: New connection from 172.19.0.5:33648 on port 1883.
+1778312132: New client connected from 172.19.0.5:33648 as 90ed43d1bd9b4b53b9713ddecf13ff5d (p5, c1, k60).
+1778312203: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778312301: mosquitto version 2.1.2 terminating
+1778312301: Saving in-memory database to /mosquitto/data//mosquitto.db.

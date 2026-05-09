@@ -2,11 +2,9 @@ import redis.asyncio as aioredis
 import asyncpg
 import asyncio
 import httpx
-import openmeteo_requests
 
 from fastapi_mqtt.config import MQTTConfig
 from fastapi_mqtt.fastmqtt import FastMQTT
-from app.routes.mqtt_handler import MQTTHandler
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
@@ -75,10 +73,9 @@ class DatabaseClient:
 
 class MQTTClient:
     _mqtt: Optional[FastMQTT] = None
-    _database_client: Optional[DatabaseClient] = None
 
     @classmethod
-    async def initialize(cls, db_client: DatabaseClient):
+    async def initialize(cls):
         if cls._mqtt is None:
             config = MQTTConfig(
                 host=settings.MQTT_HOST,
@@ -86,13 +83,12 @@ class MQTTClient:
                 keepalive=60
             )
 
-            cls._database_client = db_client
             cls._mqtt = FastMQTT(config=config)
 
             @cls._mqtt.on_connect()
             def connect_handler(client, flags, rc, properties):
-                client.subscribe("#")
-                print("Connected to broken and subscribed to all topics (#)")
+                client.subscribe("+/sensor_readings")
+                print("Connected to broker and subscribed to all sensor readings topics (+)")
 
             @cls._mqtt.on_message()
             async def message_handler(client, topic, payload, qos, properties):
@@ -103,14 +99,16 @@ class MQTTClient:
 
     @classmethod
     async def _on_message_received(cls, topic: str, payload: bytes):
+        from app.routes.mqtt_handler import MQTTHandler
+
         parts = topic.split('/')
         topic_objective = parts[1]
 
         # Debugger
         print(topic)
         print(topic_objective)
-        if (topic_objective == 'test'):
-            await MQTTHandler.read_topic_sensor(db_client=cls._database_client , topic=topic, payload=payload)
+        if (topic_objective == 'sensor_readings'):
+            await MQTTHandler.read_topic_sensor(topic=topic, payload=payload)
 
     @classmethod 
     async def close(cls):

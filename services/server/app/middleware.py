@@ -1,6 +1,5 @@
 from fastapi import HTTPException
-from app.config import settings, RedisClient
-import httpx
+from app.config import RedisClient
 
 async def check_rate_limit(device_id: str):
     r = RedisClient.get()

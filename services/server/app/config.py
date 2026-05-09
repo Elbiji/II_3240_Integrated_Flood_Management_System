@@ -2,6 +2,7 @@ import redis.asyncio as aioredis
 import asyncpg
 import asyncio
 import httpx
+import openmeteo_requests
 
 from fastapi_mqtt.config import MQTTConfig
 from fastapi_mqtt.fastmqtt import FastMQTT

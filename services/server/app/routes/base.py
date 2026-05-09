@@ -4,6 +4,7 @@ from app.config import settings, RedisClient, HTTPClient
 from app.middleware import check_rate_limit
 import httpx
 import json
+import openmeteo_requests
 
 router = APIRouter()
 
@@ -33,20 +34,38 @@ async def get_latest_prediction(
 
 @router.get("/service/weather")
 async def weather():
+    # client = HTTPClient.get()
+
+    # try:
+    #     async with httpx.AsyncClient() as client:
+    #         response = await client.get(f"https://weather.googleapis.com/v1/currentConditions:lookup?key={settings.GOOGLE_API_WEATHER_KEY}&location.latitude=-6.923955&location.longitude=107.601807")
+    #         response.raise_for_status()
+    #         return response.json()
+    # except httpx.HTTPStatusError as exc:
+    #     raise HTTPException(
+    #         status_code=exc.response.status_code,
+    #         detail=f"Error from external API: {exc.response.status_code}"
+    #     ) 
+    # except httpx.RequestError as exc:
+    #     raise HTTPException(
+    #         status_code=503,
+    #         detail=f"Could not connect to external API: {exc.request.url}"
+    #     )
+
+    # url = "https://api-open-meteo.com/v1/forecast"
+
+    # responses = openmetero
+
     client = HTTPClient.get()
+    url = "https://api.open-meteo.com/v1/forecast?latitude=-6.923955&longitude=107.601807&current=temperature_2m,precipitation,rain,relative_humidity_2m,wind_speed_10m,pressure_msl,cloud_cover&timezone=Asia%2FSingapore&forecast_days=1"
 
     try:
-        async with httpx.AsyncClient() as client:
-            response = await client.get(f"https://weather.googleapis.com/v1/currentConditions:lookup?key={settings.GOOGLE_API_WEATHER_KEY}&location.latitude=-6.923955&location.longitude=107.601807")
-            response.raise_for_status()
-            return response.json()
-    except httpx.HTTPStatusError as exc:
-        raise HTTPException(
-            status_code=exc.response.status_code,
-            detail=f"Error from external API: {exc.response.status_code}"
-        ) 
-    except httpx.RequestError as exc:
-        raise HTTPException(
-            status_code=503,
-            detail=f"Could not connect to external API: {exc.request.url}"
-        )
+        response = await client.get(url)
+        response.raise_for_status()
+        data = response.json()
+        print(data)
+
+        return data.get("current", {})
+    except Exception as e:
+        print(f"Open-Meteo Error: {e}")
+        return None

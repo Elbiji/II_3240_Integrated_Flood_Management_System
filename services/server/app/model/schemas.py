@@ -12,6 +12,7 @@ class SensorReading(BaseModel):
     temperature: float
     humidity: float
     water_height: float
+    water_height_change: float
     classification: Classification
 
     

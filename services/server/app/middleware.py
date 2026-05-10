@@ -11,5 +11,5 @@ async def check_rate_limit(request: Request):
     if count == 1:
         await r.expire(key, 60)
         
-    if count > 10:
+    if count > 50:
         raise HTTPException(status_code=429, detail="Rate limit exceeded")

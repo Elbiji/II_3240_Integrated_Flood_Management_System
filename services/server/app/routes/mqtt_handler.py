@@ -32,9 +32,9 @@ class MQTTHandler():
             )
         
             await conn.execute(
-                """INSERT INTO sensor_readings (timestamp, sensor_id, precipitation, temperature, humidity, water_height, classification)
-                   VALUES (NOW(), $1, $2, $3, $4, $5, $6)""",
-                readings.device_id, readings.precipitation, readings.temperature, readings.humidity, readings.water_height, readings.classification
+                """INSERT INTO sensor_readings (timestamp, sensor_id, precipitation, temperature, humidity, water_height, water_height_change, classification)
+                   VALUES (NOW(), $1, $2, $3, $4, $5, $6, $7)""",
+                readings.device_id, readings.precipitation, readings.temperature, readings.humidity, readings.water_height, readings.water_height_change, readings.classification
             )
 
         if readings.classification == Classification.DANGER:
@@ -53,7 +53,7 @@ class MQTTHandler():
 
     @classmethod
     async def extract_esp32_data(cls, weather_data: dict, device_id: str, sensor_data: str) -> SensorReading:
-        classification = await InferenceEngine.calculate_flood_probability(weather_data, json.loads(sensor_data), device_id)
+        classification, velocity = await InferenceEngine.calculate_inference(weather_data, json.loads(sensor_data), device_id)
         
         return SensorReading(
             device_id=device_id,
@@ -61,5 +61,6 @@ class MQTTHandler():
             temperature=weather_data.get('temperature_2m'),
             humidity=float(weather_data.get('relative_humidity_2m')),
             water_height=1.0, # Placeholder
+            water_height_change=velocity,
             classification=classification,
         )

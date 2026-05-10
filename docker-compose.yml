@@ -46,5 +46,19 @@ services:
       - ./infra/mosquitto/data:/mosquitto/data
       - ./infra/mosquitto/log:/mosquitto/log
 
+  web:
+      build: 
+        context: ./web/my-app
+        dockerfile: Dockerfile
+      volumes:
+        - ./web/my-app:/app          # Links your code to the container
+        - /app/node_modules          # Protects the container's dependencies
+      environment:
+        - WATCHPACK_POLLING=true     # FORCES Next.js to check for file changes
+        - NODE_ENV=development
+      command: npm run dev           # Runs dev mode so it looks for changes
+      ports:
+        - "3000:3000"
+
 volumes:
   ts_data:

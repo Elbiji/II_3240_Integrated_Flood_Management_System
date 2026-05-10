@@ -10,6 +10,7 @@ CREATE TABLE sensor_readings(
     temperature REAL NOT NULL,
     humidity REAL NOT NULL,
     water_height REAL NOT NULL,
+    water_height_change REAL NOT NULL,
     classification TEXT CHECK (classification IN ('SAFE','CAUTION','DANGER')),
     PRIMARY KEY (sensor_id, timestamp)
 );

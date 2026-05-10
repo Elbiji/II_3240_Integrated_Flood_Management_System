@@ -1,30 +1,11 @@
-import httpx
-import json
-
-from fastapi import APIRouter, Header, HTTPException, Query, Depends
-from app.config import RedisClient, HTTPClient, DatabaseClient
+from fastapi import APIRouter, HTTPException, Query, Depends
+from app.config import HTTPClient, DatabaseClient
 from app.middleware import check_rate_limit
 from app.services.inference_engine import InferenceEngine
 from datetime import timedelta
 
 router = APIRouter()
 
-@router.get("/api/v1/services/weather")
-async def weather():
-    client = HTTPClient.get()
-    url = "https://api.open-meteo.com/v1/forecast?latitude=-6.923955&longitude=107.601807&current=temperature_2m,precipitation,rain,relative_humidity_2m,wind_speed_10m,pressure_msl,cloud_cover&timezone=Asia%2FSingapore&forecast_days=1"
-
-    try:
-        response = await client.get(url)
-        response.raise_for_status()
-        data = response.json()
-
-        # Debugger
-        print(data)
-
-        return data.get("current", {})
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/api/v1/sensors/{device_id}/history")
 async def get_sensor_history(device_id: str, 
@@ -128,7 +109,36 @@ async def get_sensor_information(device_id: str, _ = Depends(check_rate_limit)):
     
 @router.get("/api/v1/services/{device_id}/inference")
 async def get_sensor_inference(device_id: str):
+    pool = DatabaseClient.get_pool()
+    query = """
+        SELECT classification, timestamp
+        FROM sensor_readings
+        WHERE sensor_id = $1
+        ORDER BY timestamp DESC
+        LIMIT 1;
+    """
 
-    inference_result = await InferenceEngine.calculate_flood_probability()
+    try:
+        async with pool.acquire() as conn:
+            row = await conn.fetch(query, device_id)
+            return row
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@router.get("/api/v1/services/weather")
+async def weather():
+    client = HTTPClient.get()
+    url = "https://api.open-meteo.com/v1/forecast?latitude=-6.923955&longitude=107.601807&current=temperature_2m,precipitation,rain,relative_humidity_2m,wind_speed_10m,pressure_msl,cloud_cover&timezone=auto"
 
-    pass
+    try:
+        response = await client.get(url)
+        response.raise_for_status()
+        data = response.json()
+
+        # Debugger
+        print(data)
+
+        return data.get("current", {})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

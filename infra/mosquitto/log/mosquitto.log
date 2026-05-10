@@ -1419,3 +1419,23 @@
 1778400573: New client connected from 172.19.0.6:53980 as dfab0ae677c1403b8f205d4b8cd66e82 (p5, c1, k60).
 1778401267: Saving in-memory database to /mosquitto/data//mosquitto.db.
 1778403068: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778404869: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778405830: mosquitto version 2.1.2 terminating
+1778405830: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1778406852: mosquitto version 2.1.2 starting
+1778406852: Config loaded from /mosquitto/config/mosquitto.conf.
+1778406852: Bridge support available.
+1778406852: Persistence support available.
+1778406852: TLS support available.
+1778406852: TLS-PSK support available.
+1778406852: Websockets support available.
+1778406852: Opening ipv4 listen socket on port 1883.
+1778406852: Opening ipv4 listen socket on port 9001.
+1778406852: Opening ipv6 listen socket on port 9001.
+1778406852: mosquitto version 2.1.2 running
+1778406855: New connection from 172.19.0.1:41068 on port 1883.
+1778406855: New client connected from 172.19.0.1:41068 as ESP32Client (p4, c1, k15).
+1778406856: New connection from 172.19.0.6:59746 on port 1883.
+1778406856: New client connected from 172.19.0.6:59746 as 82bdda05c9514dd3b7ce8db9d9e10f71 (p5, c1, k60).
+1778407110: mosquitto version 2.1.2 terminating
+1778407110: Saving in-memory database to /mosquitto/data//mosquitto.db.

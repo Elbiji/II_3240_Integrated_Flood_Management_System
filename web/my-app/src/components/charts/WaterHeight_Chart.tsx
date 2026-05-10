@@ -3,7 +3,8 @@
 import { apiFetch } from '@/lib/api';
 import { useState, useEffect } from 'react';
 import { 
-  AreaChart, 
+  AreaChart,
+  Area, 
   Line, 
   XAxis, 
   YAxis, 
@@ -12,14 +13,6 @@ import {
   Legend, 
   ResponsiveContainer 
 } from 'recharts';
-
-const sampleData = [
-  { name: '08:00', uv: 4000, pv: 2400 },
-  { name: '10:00', uv: 3000, pv: 1398 },
-  { name: '12:00', uv: 2000, pv: 9800 },
-  { name: '14:00', uv: 2780, pv: 3908 },
-  { name: '16:00', uv: 1890, pv: 4800 },
-];
 
 export default function FloodLineChart() {
   const [data, setData] = useState([]);
@@ -53,33 +46,60 @@ export default function FloodLineChart() {
     });
   };
 
-  if (loading) return <div className='h-[400px] flex items-center'>Loading chart...</div>
+  if (loading) return <div className='h-100 flex items-center'>Loading chart...</div>
 
   return (
-    <div className="w-full h-[400px] bg-white p-4 rounded-lg">
+    <div className="w-full h-100 rounded-lg border border-zinc-200 flex flex-col gap-12 pb-2">
+      <div className='border-b border-zinc-200 flex-col'>
+        <div className='px-10 font-medium text-lg pt-4'>
+          Grafik Ketinggian Air vs Laju dv/dt
+        </div>
+        <div className='px-10 text-sm pb-4 text-zinc-500'>
+          Ketinggian air dihitung dari jarak air terhadap sensor ultrasonik.
+        </div>
+      </div>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 5, right: 40, left: 40, bottom: 5 }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+          <CartesianGrid strokeDasharray="4" vertical={false} stroke="#f0f0f0" />
+
+          <defs>
+            <linearGradient id="fillWater" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="var(--color-chart-1)" stopOpacity={0.5}/>
+              <stop offset="95%" stopColor="var(--color-chart-1)" stopOpacity={0}/>
+            </linearGradient>
+          </defs>
+
           <XAxis 
+            axisLine={false}
             dataKey="timestamp" 
-            tickFormatter={formatXAxis} 
+            tickFormatter={formatXAxis}
+            tickLine={false} 
+            tick={{ fill: 'var(--color-muted-foreground)', fontSize: 12 }}
             stroke="#888888" 
             fontSize={12}
           />
-          <YAxis stroke="#888888" />
+          <YAxis stroke="#888888" 
+            axisLine={false}
+            width={0}
+            tickLine={false}
+            tick={{ fill: 'var(--color-muted-foreground)', fontSize: 0 }}
+          />
           <Tooltip 
             contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #ddd' }}
           />
           <Legend />
-          <Line
+          <Area
             type="monotone"
             dataKey="water_height"
             stroke="#1e3a8a" 
             strokeWidth={2}
-            activeDot={{ r: 8 }}
+            activeDot={{ r: 4, strokeWidth: 0, fill: "var(--color-chart-1)" }}
+            dot={false}
+            fill="url(#fillWater)"
+            legendType="none"
           />
         </AreaChart>
       </ResponsiveContainer>

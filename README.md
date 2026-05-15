@@ -130,3 +130,6 @@ Visualsiasi struktur ini dibuat untuk memudahkan pemahaman struktur kode keselur
         docker compose up -d
   ```
 
+# payload
+{"soil_sensor":4095,"soil_is_wet":false,"water_distance_cm":232.5,"water_level":0,"water_status":"AMAN","hcsr04_error":false,"pump":false,"pump_mode":"SENSOR_FALLBACK"}
+

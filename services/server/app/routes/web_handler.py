@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Query, Depends
 from app.config import HTTPClient, DatabaseClient
 from app.middleware import check_rate_limit
-from app.services.inference_engine import InferenceEngine
 from datetime import timedelta
 
 router = APIRouter()
@@ -24,7 +23,8 @@ async def get_sensor_history(device_id: str,
     query = f"""
         SELECT
             time_bucket($2, timestamp) AS bucket,
-            avg(water_height) as avg_height
+            avg(water_height) as avg_height,
+            avg(water_height_change) as avg_velocity
         FROM sensor_readings
         WHERE sensor_id = $1
             AND timestamp > NOW() - INTERVAL '{window}'
@@ -39,6 +39,7 @@ async def get_sensor_history(device_id: str,
                 {
                     "timestamp": row["bucket"].isoformat(),
                     "water_height": round(row["avg_height"], 2),
+                    "water_height_change": round(row["avg_velocity"], 2)
                 }
                 for row in rows
             ]

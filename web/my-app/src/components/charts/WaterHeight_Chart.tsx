@@ -67,8 +67,12 @@ export default function FloodLineChart() {
 
           <defs>
             <linearGradient id="fillWater" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--color-chart-1)" stopOpacity={0.5}/>
+              <stop offset="5%" stopColor="#888888" stopOpacity={0.5}/>
               <stop offset="95%" stopColor="var(--color-chart-1)" stopOpacity={0}/>
+            </linearGradient>
+            <linearGradient id="fillChange" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#0d9488" stopOpacity={0.5}/>
+              <stop offset="95%" stopColor="#0d9488" stopOpacity={0}/>
             </linearGradient>
           </defs>
 
@@ -99,6 +103,16 @@ export default function FloodLineChart() {
             activeDot={{ r: 4, strokeWidth: 0, fill: "var(--color-chart-1)" }}
             dot={false}
             fill="url(#fillWater)"
+            legendType="none"
+          />
+          <Area
+            type="monotone"
+            dataKey="water_height_change"
+            stroke="#1e3a8a" 
+            strokeWidth={2}
+            activeDot={{ r: 4, strokeWidth: 0, fill: "var(--color-chart-1)" }}
+            dot={false}
+            fill="url(#fillChange)"
             legendType="none"
           />
         </AreaChart>

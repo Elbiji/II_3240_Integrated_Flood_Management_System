@@ -48,7 +48,7 @@ export default function ServerClock() {
                     <p className={`font-mono ${
                         inference?.[0]?.classification == "DANGER"
                         ? "text-red-600"
-                        : "text-green-600"}`}>{inference[0].classification}</p>
+                        : "text-green-600"}`}>Hasil pemodelan RBS : {inference[0].classification}</p>
                 </div>
                 <div className="flex flex-row px-4 py-2 border border-zinc-200 rounded-xl shadow-sm justify-between items-center gap-4">
                     <div className="h-3 w-3 rounded-full bg-green-500 border-2 border-green-700"></div>

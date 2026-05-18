@@ -14,7 +14,6 @@ class MQTTHandler():
         print(f"Message from {topic}: {payload.decode()}")
 
         device_id = topic.split('/')[0]
-        # raw_data = json.loads(payload.decode())
 
         # Get Openmeteo Open Source Weather API
         async with httpx.AsyncClient() as client:
@@ -53,14 +52,14 @@ class MQTTHandler():
 
     @classmethod
     async def extract_esp32_data(cls, weather_data: dict, device_id: str, sensor_data: str) -> SensorReading:
-        classification, velocity = await InferenceEngine.calculate_inference(weather_data, json.loads(sensor_data), device_id)
+        classification, velocity, curr_height = await InferenceEngine.calculate_inference(weather_data, json.loads(sensor_data), device_id)
         
         return SensorReading(
             device_id=device_id,
             precipitation=weather_data.get('precipitation'),
             temperature=weather_data.get('temperature_2m'),
             humidity=float(weather_data.get('relative_humidity_2m')),
-            water_height=1.0, # Placeholder
+            water_height=curr_height, 
             water_height_change=velocity,
             classification=classification,
         )

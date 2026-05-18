@@ -1,7 +1,9 @@
 # II3240
 > A prototype for developing Early Warning System (EWS) for floods.
 
-Sistem ini dibangun diberbagai teknologi seperti TimescaleDB (Ekstensi postgreSQL) untuk penanganan database timeseries, Mosquitto sebagai broker IoT, Nextjs sebagai framework website, FastAPI sebagai layanan BE dan Docker untuk proses spin up layanan yang cepat dan proses kolaborasi yang lebih efisien. Seluruh layanan memiliki kontainer masing-masing yang berada di dalam file Docker-compose.yaml. Keputusan dalam pemilihan Docker adalah untuk membantu membuat layanan yang gampang diskalakan dan direplikasikan di berbagai mesin. 
+Sistem ini dibangun diberbagai teknologi seperti TimescaleDB (Ekstensi postgreSQL) untuk penanganan database timeseries, Mosquitto sebagai broker IoT, Nextjs sebagai framework website, FastAPI sebagai layanan BE dan Docker untuk proses spin up layanan yang cepat dan proses kolaborasi yang lebih efisien. 
+
+Seluruh layanan memiliki kontainer masing-masing yang berada di dalam file Docker-compose.yaml. Keputusan dalam pemilihan Docker adalah untuk membantu membuat layanan yang gampang diskalakan dan direplikasikan di berbagai mesin. 
 
 | Implementasi                     | /Parsial/Largely/Fully  |
 |----------------------------------|-------------------------|
